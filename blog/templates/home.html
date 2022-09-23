@@ -1,11 +1,13 @@
 #HTML setup
 <HEAD>
 <TITLE>My First Web Page</TITLE>
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
 </HEAD>
 <BODY>
-
-
-
-<h1>Hello World</h1>
-<p>This is my first web page.</p>
+{% for blog in object_list %}
+{{blog.title}}
+{{blog.summary}}
+{% endfor %}
 </BODY>

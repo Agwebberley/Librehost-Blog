@@ -1,13 +1,12 @@
-#HTML setup
-<HEAD>
-<TITLE>My First Web Page</TITLE>
-{% load static %}
-<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
 
-</HEAD>
-<BODY>
-{% for blog in object_list %}
-{{blog.title}}
-{{blog.summary}}
+{% block content %}
+<div class="content">
+{% for blog in object_list %} 
+<br>
+<h3>{{blog.title}} </h3>
+<small>Posted on {{blog.date}} by {{blog.author}}</small>
+<p>{{blog.summary}}</p>
 {% endfor %}
-</BODY>
+</div>
+{% endblock %}

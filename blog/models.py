@@ -11,6 +11,7 @@ class Blog(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to="images/", blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    pinned = models.BooleanField(default=False)
 
 
     def __str__(self):

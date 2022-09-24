@@ -5,7 +5,7 @@
 {% for blog in object_list %} 
 <br>
 <h3>{{blog.title}} </h3>
-<small>Posted on {{blog.date}} by {{blog.author}}</small>
+<small>Posted on {{blog.pub_date.date}}<br> by {{blog.author}}</small>
 <p>{{blog.summary}}</p>
 {% endfor %}
 </div>

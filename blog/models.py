@@ -22,4 +22,6 @@ class Blog(models.Model):
 
     def pub_date_pretty(self):
         return self.pub_date.strftime("%b %e %Y")
-    
+
+    class Meta:
+        ordering = ['-pub_date']    

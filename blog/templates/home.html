@@ -5,7 +5,7 @@
 {% for blog in object_list %} 
 {% if blog.pinned %}
 <br>
-<h3>{{blog.title}}</h3>
+<h3><a href="{% url 'blog_detail' slug=blog.slug %}">{{blog.title}}</a></h3>
 <small>Posted on {{blog.pub_date.date}}<br> by {{blog.author}}</small>
 <p>{{blog.summary}}</p>
 {% endif %}
@@ -14,7 +14,7 @@
 {% for blog in object_list %} 
 {% if not blog.pinned %}
 <br>
-<h3>{{blog.title}} </h3>
+<h3><a href="{% url 'blog_detail' slug=blog.slug %}">{{blog.title}}</a></h3>
 <small>Posted on {{blog.pub_date.date}}<br> by {{blog.author}}</small>
 <p>{{blog.summary}}</p>
 {% endif %}

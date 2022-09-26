@@ -9,16 +9,35 @@
 <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-<div class="">
-{% if user.is_authenitcated %}
+
+  {% if messages %}
+  {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <div class="messages alert alert-danger alert-dismissble fade show" role="alert">
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+    <div class="messages alert alert-warning alert-dismissble fade show" role="alert">
+    {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+    <div class="messages alert alert-success alert-dismissble fade show" role="alert">
+    {% else %}
+    <div class="messages alert alert-primary alert-dismissble fade show" role="alert">
+    {% endif %}
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="float:right"></button>
+    </div>
+
+      {% endfor %}
+  {% endif %}
+
+<div class="">  
+{% if user.is_authenticated %}
 <div class="dropdown drpdwn">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown button
+      {{user.username}}
     </button>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Logout</a></li>
+      <li><a class="dropdown-item" href="#">Post</a></li>
+      <li><a class="dropdown-item" href="#">Review</a></li>
+      <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
     </ul>
   </div>
   {% else %}
@@ -27,8 +46,8 @@
     Login
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Login</a></li>
-    <li><a class="dropdown-item" href="#">Register</a></li>
+    <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+    <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
   </ul>
 </div>
 </div>

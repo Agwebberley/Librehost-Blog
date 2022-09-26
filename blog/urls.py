@@ -3,12 +3,15 @@
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from .views import HomeView, BlogDetailView
+from .views import HomeView, BlogDetailView, login_request, register_request, logout_request
 
 # Urls for the blog app, / is the home page it is using the home view from the views.py file
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     path("article/<slug:slug>/", BlogDetailView.as_view(), name="blog_detail"),
+    path("register", register_request, name="register"),
+    path("login", login_request, name="login"),
+    path("logout", logout_request, name= "logout"),
     ]
 

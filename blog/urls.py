@@ -18,6 +18,5 @@ urlpatterns = [
     path('article/<slug:slug>/delete/', delete_post, name='delete_blog'),
     path('article/<slug:slug>/edit/', delete_post, name='edit_blog'),
     path('post/<int:post_pk>/comment/delete/<int:pk>/', CommentDeleteView.as_view(), name='delete_comment'),
-    path('markdownx/', include('markdownx.urls')),
     ]
 

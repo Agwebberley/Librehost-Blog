@@ -16,8 +16,8 @@ class HomeView(ListView):
     template_name = 'home.html'
 
 class BlogDetailView(DetailView):
-    def get(self, request, pk, *args, **kwargs):
-        post = Blog.objects.get(pk=pk)
+    def get(self, request, slug, *args, **kwargs):
+        post = Blog.objects.get(slug=slug)
         form = CommentForm()
         comments = Comment.objects.filter(post=post).order_by('-created_on')
         context = {
@@ -25,7 +25,7 @@ class BlogDetailView(DetailView):
             'form': form,
             'comments': comments,
         }
-        return render(request, 'social/post_detail.html', context)
+        return render(request, 'blog_detail.html', context)
     def post(self, request, pk, *args, **kwargs):
         post = Blog.objects.get(pk=pk)
         form = CommentForm(request.POST)
@@ -41,7 +41,7 @@ class BlogDetailView(DetailView):
             'form': form,
             'comments': comments,
         }
-        return render(request, 'social/post_detail.html', context)
+        return render(request, 'blog_detail.html', context)
 
 
 class PostEditView(UpdateView):

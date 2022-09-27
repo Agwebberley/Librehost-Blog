@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<center>
+    <div class="container py-5 forms">
+        <h1>Post</h1>
+        <form method="POST">
+          {% csrf_token %}
+          <br>
+            <div class="form-group">
+            <label for="title">Title:</label>
+          {{ form.title }} <br><br>
+          <label for="body"> Body:</label><br>
+          {{ form.body }} <br>
+          <button class="btn btn-primary" type="submit">Post</button>
+        </form>
+      </div>
+    </center>
+    {% else %}
+    <center>
+      <h1>Log in to post</h1>
+    </center>
+    {% endif %}
+    {% endblock %}

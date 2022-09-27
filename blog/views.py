@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Blog
 from django.views.generic import ListView, DetailView
-from .forms import NewUserForm
+from .forms import NewUserForm, BlogForm
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm 
@@ -54,3 +54,18 @@ def logout_request(request):
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("home")
 
+
+def publishBlog(request):
+	if request.method == "POST":
+		if request.user.is_authenticated:
+			form = BlogForm(request.POST)
+			if form.is_valid():
+				blog = form.save(commit=False)
+				blog.author = request.user
+				blog.save()
+				return redirect("home")
+			else:
+				messages.error(request, "Your Post Is Invalid.")
+	else:
+		form = BlogForm()
+	return render(request, 'post.html', {'form': form})

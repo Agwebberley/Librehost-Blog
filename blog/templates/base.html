@@ -38,7 +38,7 @@
       <li><a class="dropdown-item" href="{% url "post" %}">Post</a></li>
       {% if blog.author %}
         {% if blog.author == user or user.is_superuser %}
-          <li><a class="dropdown-item" href="">Edit</a></li>
+          <li><a class="dropdown-item" href="{% url "edit_blog" slug=blog.slug %}">Edit</a></li>
           <li><a class="dropdown-item" href="{% url "delete_blog" slug=blog.slug %}">Delete</a></li>
         {% endif %}
       {% endif %}
@@ -62,7 +62,7 @@
 <br>
 <div class="">
     <center>
-<a href="#" id="home"><img class="logo" src="{% static 'logo-no-background.png'%}" alt="LibreHost"></a>
+<a href="{% url 'home' %}" id="home"><img class="logo" src="{% static 'logo-no-background.png'%}" alt="LibreHost"></a>
     </center>
 </div>
 

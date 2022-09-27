@@ -39,3 +39,8 @@ class Blog(models.Model):
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
+class Comment(models.Model):
+    comment = models.TextField()
+    created_on = models.DateTimeField(default=timezone.now)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)

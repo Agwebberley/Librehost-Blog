@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Blog
+from .models import Blog, Comment
 
 
 # Create your forms here.
@@ -29,3 +29,14 @@ class BlogForm(forms.ModelForm):
 		if commit:
 			blog.save()
 		return blog
+
+class CommentForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='',
+        widget=forms.Textarea(
+            attrs={'rows': '3',
+                   'placeholder': 'Say Something...'}
+        ))
+    class Meta:
+        model = Comment
+        fields = ['comment']

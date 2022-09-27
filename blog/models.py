@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.utils import timezone
+from markdownx.models import MarkdownxField
 
 # Create your models here.
 
@@ -11,7 +12,7 @@ from django.utils import timezone
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField(default=timezone.now)
-    body = models.TextField()
+    body = MarkdownxField()
     image = models.ImageField(upload_to="images/", blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     pinned = models.BooleanField(default=False)

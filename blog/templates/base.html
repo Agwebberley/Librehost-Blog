@@ -36,6 +36,12 @@
     </button>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{% url "post" %}">Post</a></li>
+      {% if blog.author %}
+        {% if blog.author == user or user.is_superuser %}
+          <li><a class="dropdown-item" href="">Edit</a></li>
+          <li><a class="dropdown-item" href="{% url "delete_blog" slug=blog.slug %}">Delete</a></li>
+        {% endif %}
+      {% endif %}
       <li><a class="dropdown-item" href="#">Review</a></li>
       <li><a class="dropdown-item" href="{% url "logout" %}">Logout</a></li>
     </ul>

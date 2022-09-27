@@ -69,3 +69,8 @@ def publishBlog(request):
 	else:
 		form = BlogForm()
 	return render(request, 'post.html', {'form': form})
+
+def delete_post(request, slug):
+    post = Blog.objects.filter(slug=slug)
+    post.delete()
+    return redirect('/')

@@ -26,8 +26,8 @@ class BlogDetailView(DetailView):
             'comments': comments,
         }
         return render(request, 'blog_detail.html', context)
-    def post(self, request, pk, *args, **kwargs):
-        post = Blog.objects.get(pk=pk)
+    def post(self, request, slug, *args, **kwargs):
+        post = Blog.objects.get(slug=slug)
         form = CommentForm(request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
@@ -57,8 +57,8 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
     template_name = 'comment_delete.html'
     def get_success_url(self):
-        slug = self.kwargs['slug']
-        return reverse_lazy('blog_detail', kwargs={'slug': slug})
+        pk = self.kwargs['pk']
+        return reverse_lazy('blog_detail', kwargs={'pk': pk})
     def test_func(self):
         comment = self.get_object()
         return self.request.user == comment.author

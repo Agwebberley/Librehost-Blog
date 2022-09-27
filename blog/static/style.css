@@ -60,7 +60,7 @@ body {
     padding: 0;
     text-align: left;
 }
-.navbar {
+.navbarstyle {
     background-color: rgb(32, 32, 37);
     color: rgb(255, 255, 255);
     font-size: 1.5em;
@@ -96,4 +96,9 @@ a {
   position: sticky;
   top: 0;
   right: 2em;
+}
+
+.drpdwn {
+  position: relative;
+
 }
